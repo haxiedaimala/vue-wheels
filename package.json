@@ -1,23 +1,20 @@
 {
   "name": "vue-wheels",
-  "version": "0.0.1",
-  "description": "这是一个自制UI框架",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haxiedaimala/vue-wheels.git"
+  "dependencies": {
+    "vue": "^3.2.45"
   },
-  "keywords": [
-    "vue",
-    "ui"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/haxiedaimala/vue-wheels/issues"
-  },
-  "homepage": "https://github.com/haxiedaimala/vue-wheels#readme"
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0",
+    "vue-tsc": "^1.0.24"
+  }
 }
