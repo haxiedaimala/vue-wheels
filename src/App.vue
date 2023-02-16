@@ -3,9 +3,10 @@ import GButton from './components/Button.vue';
 </script>
 
 <template>
-  <g-button/>
+  <g-button>
+    <svg class="icon" aria-hidden="true">
+      <use xlink:href="#i-settings"></use>
+    </svg>
+    你好
+  </g-button>
 </template>
-
-<style scoped>
-
-</style>

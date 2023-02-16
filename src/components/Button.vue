@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  <button class="gulu-button">按钮</button>
+  <button class="gulu-button">
+    <slot/>
+  </button>
 </template>
 
 <style scoped lang="scss">
