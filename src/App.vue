@@ -4,4 +4,6 @@ import GButton from './components/Button.vue';
 
 <template>
   <g-button icon="settings">你好</g-button>
+  <g-button>你好</g-button>
+  <g-button icon="settings" icon-position="right">你好</g-button>
 </template>
