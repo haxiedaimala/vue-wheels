@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   icon: String,
   iconPosition: {
     type: String,
@@ -7,14 +7,24 @@ defineProps({
     validator: (val: string) => {
       return ['left', 'right'].indexOf(val) !== -1;
     }
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 });
+const emit = defineEmits<{
+  (e: 'update:loading', value: boolean): void
+}>();
+const toggle = () => {
+  emit('update:loading', !props.loading);
+};
 </script>
 
 <template>
-  <button class="gulu-button" :class="{[`gulu-icon-${iconPosition}`]:iconPosition}">
-    <g-icon v-if="icon" class="gulu-icon" :name="icon"/>
-    <g-icon class="gulu-loading" name="loading"></g-icon>
+  <button class="gulu-button" :class="{[`gulu-icon-${iconPosition}`]:iconPosition}" @click="toggle">
+    <g-icon v-if="icon&&!loading" class="gulu-icon" :name="icon"/>
+    <g-icon v-if="loading" class="gulu-loading" name="loading"></g-icon>
     <slot/>
   </button>
 </template>
