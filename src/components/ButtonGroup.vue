@@ -24,7 +24,10 @@ slots.forEach(node => {
 
   :deep(.gulu-button) {
     border-radius: 0;
-    margin-left: -1px;
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
 
     &:nth-child(1) {
       border-top-left-radius: var(--border-radius);
