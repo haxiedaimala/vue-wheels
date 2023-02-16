@@ -13,9 +13,7 @@ defineProps({
 
 <template>
   <button class="gulu-button" :class="{[`gulu-icon-${iconPosition}`]:iconPosition}">
-    <svg v-if="icon" class="icon" aria-hidden="true">
-      <use :xlink:href="`#i-${icon}`"></use>
-    </svg>
+    <g-icon v-if="icon" class="gulu-icon" :name="icon"/>
     <slot/>
   </button>
 </template>
@@ -33,13 +31,13 @@ defineProps({
   align-items: center;
   vertical-align: middle;
 
-  .icon {
+  .gulu-icon {
     order: -1;
     margin: 0 .3em 0 0;
   }
 
   &.gulu-icon-right {
-    .icon {
+    .gulu-icon {
       order: 2;
       margin: 0 0 0 .3em;
     }
