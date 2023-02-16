@@ -1,8 +1,14 @@
 <script setup lang="ts">
+defineProps({
+  icon: String
+});
 </script>
 
 <template>
   <button class="gulu-button">
+    <svg v-if="icon" class="icon" aria-hidden="true">
+      <use :xlink:href="`#i-${icon}`"></use>
+    </svg>
     <slot/>
   </button>
 </template>
