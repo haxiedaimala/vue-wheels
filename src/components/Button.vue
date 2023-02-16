@@ -14,11 +14,21 @@ defineProps({
 <template>
   <button class="gulu-button" :class="{[`gulu-icon-${iconPosition}`]:iconPosition}">
     <g-icon v-if="icon" class="gulu-icon" :name="icon"/>
+    <g-icon class="gulu-loading" name="loading"></g-icon>
     <slot/>
   </button>
 </template>
 
 <style lang="scss">
+@keyframes gulu-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .gulu-button {
   font-size: var(--font-size);
   height: var(--button-height);
@@ -55,6 +65,9 @@ defineProps({
     outline: none;
   }
 
+  .gulu-loading {
+    animation: gulu-spin 2s infinite linear;
+  }
 }
 
 </style>
