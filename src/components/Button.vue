@@ -1,7 +1,13 @@
 <script setup lang="ts">
 defineProps({
   icon: String,
-  iconPosition: String
+  iconPosition: {
+    type: String,
+    default: 'left',
+    validator: (val: string) => {
+      return ['left', 'right'].indexOf(val) !== -1;
+    }
+  }
 });
 </script>
 
