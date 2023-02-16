@@ -1,11 +1,21 @@
+<script setup lang="ts">
+import {useSlots} from 'vue';
+import GButton from './Button.vue';
+
+const slots = useSlots().default!();
+slots.forEach(node => {
+  if (node.type !== GButton) {
+    throw new Error(`g-button-group 组件的子元素只能是 g-button，但是你写的是 ${JSON.stringify(node.type)}`);
+  }
+});
+
+</script>
+
 <template>
   <div class="gulu-button-group">
     <slot/>
   </div>
 </template>
-
-<script setup lang="ts">
-</script>
 
 <style lang="scss" scoped>
 .gulu-button-group {
