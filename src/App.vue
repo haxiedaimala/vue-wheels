@@ -2,6 +2,8 @@
 import GButton from './components/GButton.vue';
 import GButtonGroup from './components/GButtonGroup.vue';
 import GInput from './components/GInput.vue';
+import GRow from './components/GRow.vue';
+import GCol from './components/GCol.vue';
 import {ref} from 'vue';
 
 const loading1 = ref(true);
@@ -11,6 +13,31 @@ const value = ref('王五');
 </script>
 
 <template>
+  <div class="box">
+    <g-row>
+      <g-col></g-col>
+      <g-col></g-col>
+    </g-row>
+    <g-row>
+      <g-col></g-col>
+      <g-col></g-col>
+      <g-col></g-col>
+    </g-row>
+    <g-row>
+      <g-col></g-col>
+      <g-col></g-col>
+      <g-col></g-col>
+      <g-col></g-col>
+    </g-row>
+    <g-row>
+      <g-col span="2"></g-col>
+      <g-col span="22"></g-col>
+    </g-row>
+    <g-row>
+      <g-col span="22"></g-col>
+      <g-col span="2"></g-col>
+    </g-row>
+  </div>
   <div class="box">
     <g-button icon="settings" v-model:loading="loading1">你好</g-button>
     <g-button v-model:loading="loading2">你好</g-button>
