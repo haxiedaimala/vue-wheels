@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import GButton from './components/Button.vue';
 import GButtonGroup from './components/ButtonGroup.vue';
-import GInput from './components/Input.vue'
+import GInput from './components/Input.vue';
 import {ref} from 'vue';
 
 const loading1 = ref(true);
@@ -26,18 +26,16 @@ const loading3 = ref(false);
     <g-input value="张三"/>
     <g-input value="李四" disabled/>
     <g-input value="李四" readonly/>
-    <div>
-      <g-input value="王" error="用户名长度不少于两个字"/>
-    </div>
-    <div>
-      <g-input value="王" success="用户名符合要求"/>
-    </div>
+    <br>
+    <g-input value="王" error="用户名长度不少于两个字"/>
+    <br>
+    <g-input value="王" success="用户名符合要求"/>
   </div>
 
 </template>
 
 <style lang="scss">
-.box{
+.box {
   margin: 10px;
 }
 </style>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import GIcon from './Icon.vue';
+import {computed} from 'vue';
 
-defineProps({
+const props = defineProps({
   value: String,
   disabled: {
     type: Boolean,
@@ -14,19 +15,20 @@ defineProps({
   error: String,
   success: String
 });
+const inputTips = computed(() => {
+  if (props.error) return {type: 'error', value: props.error};
+  if (props.success) return {type: 'success', value: props.success};
+  return false;
+});
 </script>
 
 <template>
   <div class="gulu-input-wrapper">
     <input type="text" :class="{'gulu-input-error':error}" :value="value"
            :disabled="disabled" :readonly="readonly">
-    <template v-if="error">
-      <g-icon name="error" class="gulu-icon-error"/>
-      <span class="gulu-error-message"> {{ error }}</span>
-    </template>
-    <template v-if="success">
-      <g-icon name="success" class="gulu-icon-success"/>
-      <span class="gulu-success-message"> {{ success }}</span>
+    <template v-if="inputTips && inputTips.type">
+      <g-icon :name="inputTips.type" :class="`gulu-icon-${inputTips.type}`"/>
+      <span :class="`gulu-${inputTips.type}-message`"> {{ inputTips.value }}</span>
     </template>
   </div>
 </template>
