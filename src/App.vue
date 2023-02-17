@@ -7,6 +7,7 @@ import {ref} from 'vue';
 const loading1 = ref(true);
 const loading2 = ref(true);
 const loading3 = ref(false);
+const value = ref('王五');
 </script>
 
 <template>
@@ -29,7 +30,10 @@ const loading3 = ref(false);
     <br>
     <g-input value="王" error="用户名长度不少于两个字"/>
     <br>
-    <g-input value="王" success="用户名符合要求"/>
+    <g-input value="赵四" success="用户名符合要求"/>
+    <br>
+    <g-input v-model:value="value"/>
+    <span>{{ value }}</span>
   </div>
 
 </template>

@@ -15,6 +15,9 @@ const props = defineProps({
   error: String,
   success: String
 });
+defineEmits<{
+  (e: 'update:value', value: string): void
+}>();
 const inputTips = computed(() => {
   if (props.error) return {type: 'error', value: props.error};
   if (props.success) return {type: 'success', value: props.success};
@@ -25,6 +28,7 @@ const inputTips = computed(() => {
 <template>
   <div class="gulu-input-wrapper">
     <input type="text" :class="{'gulu-input-error':error}" :value="value"
+           @input="$emit('update:value',$event.target.value)"
            :disabled="disabled" :readonly="readonly">
     <template v-if="inputTips && inputTips.type">
       <g-icon :name="inputTips.type" :class="`gulu-icon-${inputTips.type}`"/>
