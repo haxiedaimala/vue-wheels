@@ -11,16 +11,22 @@ defineProps({
     type: Boolean,
     default: false
   },
-  error: String
+  error: String,
+  success: String
 });
 </script>
 
 <template>
   <div class="gulu-input-wrapper">
-    <input type="text" :class="{'gulu-input-error':error}" :value="value" :disabled="disabled" :readonly="readonly">
+    <input type="text" :class="{'gulu-input-error':error}" :value="value"
+           :disabled="disabled" :readonly="readonly">
     <template v-if="error">
       <g-icon name="error" class="gulu-icon-error"/>
       <span class="gulu-error-message"> {{ error }}</span>
+    </template>
+    <template v-if="success">
+      <g-icon name="success" class="gulu-icon-success"/>
+      <span class="gulu-success-message"> {{ success }}</span>
     </template>
   </div>
 </template>
@@ -33,6 +39,7 @@ $border-radius: 4px;
 $font-size: 12px;
 $box-shadow-color: rgba(0, 0, 0, .5);
 $red: #f1453d;
+$green: #67c23a;
 
 .gulu-input-wrapper {
   display: inline-flex;
@@ -70,8 +77,16 @@ $red: #f1453d;
     fill: $red;
   }
 
+  > .gulu-icon-success {
+    fill: $green;
+  }
+
   > .gulu-error-message {
     color: $red;
+  }
+
+  > .gulu-success-message {
+    color: $green;
   }
 
   > .gulu-input-error {

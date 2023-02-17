@@ -29,6 +29,9 @@ const loading3 = ref(false);
     <div>
       <g-input value="王" error="用户名长度不少于两个字"/>
     </div>
+    <div>
+      <g-input value="王" success="用户名符合要求"/>
+    </div>
   </div>
 
 </template>
@@ -37,5 +40,4 @@ const loading3 = ref(false);
 .box{
   margin: 10px;
 }
-
 </style>
