@@ -2,12 +2,15 @@
 defineProps({
   span: {
     type: [String, Number]
+  },
+  offset: {
+    type: [String, Number]
   }
 });
 </script>
 
 <template>
-  <div class="gulu-layout-col" :class="`span-${span}`">
+  <div class="gulu-layout-col" :class="{[`span-${span}`]:span,[`offset-${offset}`]:offset}">
     <slot/>
   </div>
 </template>
@@ -23,6 +26,12 @@ defineProps({
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
       width: ($n / 24) * 100%;
+    }
+  }
+  $class-prefix: offset-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      margin-left: ($n / 24) * 100%;
     }
   }
 }
