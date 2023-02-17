@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import GButton from './components/Button.vue';
-import GButtonGroup from './components/ButtonGroup.vue';
-import GInput from './components/Input.vue';
+import GButton from './components/GButton.vue';
+import GButtonGroup from './components/GButtonGroup.vue';
+import GInput from './components/GInput.vue';
 import {ref} from 'vue';
 
 const loading1 = ref(true);

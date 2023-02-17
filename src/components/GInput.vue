@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GIcon from './Icon.vue';
+import GIcon from './GIcon.vue';
 import {computed} from 'vue';
 
 const props = defineProps({

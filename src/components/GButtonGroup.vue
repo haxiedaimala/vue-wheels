@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {useSlots} from 'vue';
-import GButton from './Button.vue';
+import GButton from './GButton.vue';
 
 const slots = useSlots().default!();
 slots.forEach(node => {
