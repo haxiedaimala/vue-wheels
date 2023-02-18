@@ -104,36 +104,21 @@ const colClass = computed(() => {
     }
   }
 
-  @media (max-width: 768px) {
-    $class-prefix: xs-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: xs-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
+
+  $class-prefix: xs-span-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      width: calc(#{$n} / 24 * 100%);
     }
   }
-  @media (max-width: 768px) {
-    $class-prefix: xs-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: xs-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
+  $class-prefix: xs-offset-;
+  @for $n from 1 through 24 {
+    &.#{$class-prefix}#{$n} {
+      margin-left: calc(#{$n} / 24 * 100%);
     }
   }
 
-  @media (min-width: 769px) and (max-width: 992px) {
+  @media (min-width: 768px) {
     $class-prefix: sm-span-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -148,7 +133,7 @@ const colClass = computed(() => {
     }
   }
 
-  @media (min-width: 993px) and (max-width: 1200px) {
+  @media (min-width: 992px) {
     $class-prefix: md-span-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -163,7 +148,7 @@ const colClass = computed(() => {
     }
   }
 
-  @media (min-width: 1201px) and (max-width: 1920px) {
+  @media (min-width: 1200px) {
     $class-prefix: lg-span-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
@@ -178,7 +163,7 @@ const colClass = computed(() => {
     }
   }
 
-  @media (min-width: 1921px) {
+  @media (min-width: 1920px) {
     $class-prefix: xl-span-;
     @for $n from 1 through 24 {
       &.#{$class-prefix}#{$n} {
