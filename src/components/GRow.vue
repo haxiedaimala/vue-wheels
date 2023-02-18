@@ -35,6 +35,7 @@ onMounted(() => {
 <style lang="scss">
 .gulu-layout-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
 
   &.gulu-layout-center {
