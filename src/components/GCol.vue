@@ -1,3 +1,14 @@
+<script lang="ts">
+const validator = (value: Object): boolean => {
+  let valid = true;
+  let keys = Object.keys(value);
+  keys.forEach(key => {
+    if (['span', 'offset'].indexOf(key) === -1) valid = false;
+  });
+  return valid;
+};
+export default validator;
+</script>
 <script setup lang="ts">
 import {computed} from 'vue';
 
@@ -10,53 +21,23 @@ const {span, offset, xs, sm, md, lg, xl} = defineProps({
   },
   xs: {
     type: Object,
-    validator: (value: Object) => {
-      let keys = Object.keys(value);
-      keys.forEach(key => {
-        if (['span', 'offset'].indexOf(key) === -1) return false;
-      });
-      return true;
-    }
+    validator
   },
   sm: {
     type: Object,
-    validator: (value: Object) => {
-      let keys = Object.keys(value);
-      keys.forEach(key => {
-        if (['span', 'offset'].indexOf(key) === -1) return false;
-      });
-      return true;
-    }
+    validator
   },
   md: {
     type: Object,
-    validator: (value: Object) => {
-      let keys = Object.keys(value);
-      keys.forEach(key => {
-        if (['span', 'offset'].indexOf(key) === -1) return false;
-      });
-      return true;
-    }
+    validator
   },
   lg: {
     type: Object,
-    validator: (value: Object) => {
-      let keys = Object.keys(value);
-      keys.forEach(key => {
-        if (['span', 'offset'].indexOf(key) === -1) return false;
-      });
-      return true;
-    }
+    validator
   },
   xl: {
     type: Object,
-    validator: (value: Object) => {
-      let keys = Object.keys(value);
-      keys.forEach(key => {
-        if (['span', 'offset'].indexOf(key) === -1) return false;
-      });
-      return true;
-    }
+    validator
   }
 });
 const createClasses = (obj: any, str: string = ''): string[] => {
