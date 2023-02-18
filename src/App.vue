@@ -13,7 +13,7 @@ const value = ref('王五');
 </script>
 
 <template>
-  <div class="box" style="border:5px solid yellow">
+  <div class="box">
     <g-row gutter="20">
       <g-col></g-col>
       <g-col></g-col>
