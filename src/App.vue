@@ -13,6 +13,34 @@ const value = ref('王五');
 </script>
 
 <template>
+  <div class="box" style="border:5px solid yellow">
+    <g-row gutter="20">
+      <g-col></g-col>
+      <g-col></g-col>
+    </g-row>
+    <g-row gutter="20">
+      <g-col></g-col>
+      <g-col></g-col>
+      <g-col></g-col>
+    </g-row>
+    <g-row gutter="20">
+      <g-col span="2"></g-col>
+      <g-col span="22"></g-col>
+    </g-row>
+    <g-row>
+      <g-col span="2"></g-col>
+      <g-col span="20" offset="2"></g-col>
+    </g-row>
+    <g-row gutter="20">
+      <g-col span="2"></g-col>
+      <g-col span="20" offset="2"></g-col>
+    </g-row>
+    <g-row>
+      <g-col span="4"></g-col>
+      <g-col span="8" offset="2"></g-col>
+      <g-col span="8" offset="2"></g-col>
+    </g-row>
+  </div>
   <div class="box">
     <g-row>
       <g-col></g-col>
