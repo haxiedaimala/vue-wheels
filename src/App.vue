@@ -15,6 +15,34 @@ const value = ref('王五');
 <template>
   <div class="box">
     <g-row>
+      <g-col span="6"/>
+      <g-col span="6"/>
+      <g-col span="6"/>
+    </g-row>
+    <g-row justify="center">
+      <g-col span="6"/>
+      <g-col span="6"/>
+      <g-col span="6"/>
+    </g-row>
+    <g-row justify="end">
+      <g-col span="6"/>
+      <g-col span="6"/>
+      <g-col span="6"/>
+    </g-row>
+    <g-row justify="space-between">
+      <g-col span="6"/>
+      <g-col span="6"/>
+      <g-col span="6"/>
+    </g-row>
+    <g-row justify="space-around">
+      <g-col span="6"/>
+      <g-col span="6"/>
+      <g-col span="6"/>
+    </g-row>
+  </div>
+
+  <div class="box">
+    <g-row>
       <g-col/>
       <g-col/>
       <g-col/>

@@ -5,6 +5,14 @@ const props = defineProps({
   gutter: {
     type: [String, Number],
     default: 0
+  },
+  justify: {
+    type: String,
+    default: 'start',
+    validator(value: string): boolean {
+      const array = ['end', 'center', 'space-between', 'space-around', 'start'];
+      return array.indexOf(value) !== -1;
+    }
   }
 });
 const row = ref<HTMLDivElement>();
@@ -19,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gulu-layout-row" ref="row">
+  <div class="gulu-layout-row" :class="{[`gulu-layout-${justify}`]:justify}" ref="row">
     <slot/>
   </div>
 </template>
@@ -27,5 +35,22 @@ onMounted(() => {
 <style lang="scss">
 .gulu-layout-row {
   display: flex;
+  justify-content: flex-start;
+
+  &.gulu-layout-center {
+    justify-content: center;
+  }
+
+  &.gulu-layout-end {
+    justify-content: flex-end;
+  }
+
+  &.gulu-layout-space-between {
+    justify-content: space-between;
+  }
+
+  &.gulu-layout-space-around {
+    justify-content: space-around;
+  }
 }
 </style>
