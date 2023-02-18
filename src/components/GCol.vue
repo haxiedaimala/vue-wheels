@@ -59,22 +59,26 @@ const {span, offset, xs, sm, md, lg, xl} = defineProps({
     }
   }
 });
+const createClasses = (obj: any, str: string = ''): string[] => {
+  if (!obj) return [];
+  let array = [];
+  if (obj.span) {
+    array.push(`${str}span-${obj.span}`);
+  }
+  if (obj.offset) {
+    array.push(`${str}offset-${obj.offset}`);
+  }
+  return array;
+};
 const colClass = computed(() => {
-  return {
-    [`span-${span}`]: span,
-    [`offset-${offset}`]: offset,
-    [`xs-span-${xs?.span}`]: xs && xs.span,
-    [`xs-offset-${xs?.offset}`]: xs && xs.offset,
-    [`sm-span-${sm?.span}`]: sm && sm.span,
-    [`sm-offset-${sm?.offset}`]: sm && sm.offset,
-    [`md-span-${md?.span}`]: md && md.span,
-    [`md-offset-${md?.offset}`]: md && md.offset,
-    [`lg-span-${lg?.span}`]: lg && lg.span,
-    [`lg-offset-${lg?.offset}`]: lg && lg.offset,
-    [`xl-span-${xl?.span}`]: xl && xl.span,
-    [`xl-offset-${xl?.offset}`]: xl && xl.offset,
-
-  };
+  return [
+    ...createClasses({span, offset}),
+    ...createClasses(xs, 'xs-'),
+    ...createClasses(sm, 'sm-'),
+    ...createClasses(md, 'md-'),
+    ...createClasses(lg, 'lg-'),
+    ...createClasses(xl, 'xl-'),
+  ];
 });
 </script>
 

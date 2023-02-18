@@ -15,11 +15,12 @@ const value = ref('王五');
 <template>
   <div class="box">
     <g-row>
-      <g-col span="24" :sm="{span:12}" :md="{span:8}"/>
-      <g-col span="24" :sm="{span:12}" :md="{span:8}"/>
-      <g-col span="24" :sm="{span:12}" :md="{span:8}"/>
+      <g-col span="8" :sm="{span:12}" :md="{span:8}"/>
+      <g-col span="8" :sm="{span:12}" :md="{span:8}"/>
+      <g-col span="8" :sm="{span:12}" :md="{span:8}"/>
     </g-row>
   </div>
+
   <div class="box">
     <g-row>
       <g-col :xs="{span:8}" :sm="{span:6}" :md="{span:4}" :lg="{span:3}" :xl="{span:1}"/>
