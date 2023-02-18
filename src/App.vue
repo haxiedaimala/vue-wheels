@@ -14,26 +14,21 @@ const value = ref('王五');
 
 <template>
   <div class="box">
-    <g-row gutter="20">
-      <g-col></g-col>
-      <g-col></g-col>
-    </g-row>
-    <g-row gutter="20">
-      <g-col></g-col>
-      <g-col></g-col>
-      <g-col></g-col>
-    </g-row>
-    <g-row gutter="20">
-      <g-col span="2"></g-col>
-      <g-col span="22"></g-col>
+    <g-row>
+      <g-col/>
+      <g-col/>
+      <g-col/>
     </g-row>
     <g-row>
-      <g-col span="2"></g-col>
-      <g-col span="20" offset="2"></g-col>
+      <g-col span="2"/>
+      <g-col span="18"></g-col>
+      <g-col span="4"></g-col>
     </g-row>
     <g-row gutter="20">
-      <g-col span="2"></g-col>
-      <g-col span="20" offset="2"></g-col>
+      <g-col/>
+      <g-col/>
+      <g-col/>
+      <g-col/>
     </g-row>
     <g-row>
       <g-col span="4"></g-col>
@@ -41,40 +36,7 @@ const value = ref('王五');
       <g-col span="8" offset="2"></g-col>
     </g-row>
   </div>
-  <div class="box">
-    <g-row>
-      <g-col></g-col>
-      <g-col></g-col>
-    </g-row>
-    <g-row>
-      <g-col></g-col>
-      <g-col></g-col>
-      <g-col></g-col>
-    </g-row>
-    <g-row>
-      <g-col></g-col>
-      <g-col></g-col>
-      <g-col></g-col>
-      <g-col></g-col>
-    </g-row>
-    <g-row>
-      <g-col span="2"></g-col>
-      <g-col span="22"></g-col>
-    </g-row>
-    <g-row>
-      <g-col span="22"></g-col>
-      <g-col span="2"></g-col>
-    </g-row>
-    <g-row>
-      <g-col span="2"></g-col>
-      <g-col span="20" offset="2"></g-col>
-    </g-row>
-    <g-row>
-      <g-col span="4"></g-col>
-      <g-col span="8" offset="2"></g-col>
-      <g-col span="8" offset="2"></g-col>
-    </g-row>
-  </div>
+
   <div class="box">
     <g-button icon="settings" v-model:loading="loading1">你好</g-button>
     <g-button v-model:loading="loading2">你好</g-button>
