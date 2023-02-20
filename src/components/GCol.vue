@@ -70,97 +70,40 @@ const colClass = computed(() => {
 </template>
 
 <style lang="scss">
+@mixin span-offset-classes($class-prefix-span:span-,$class-prefix-offset:offset-) {
+  @for $n from 1 through 24 {
+    &.#{$class-prefix-span}#{$n} {
+      width: calc(#{$n} / 24 * 100%);
+    }
+    &.#{$class-prefix-offset}#{$n} {
+      margin-left: calc(#{$n} / 24 * 100%);
+    }
+  }
+}
+
 .gulu-layout-col {
   min-height: 50px;
   width: 50%;
   background: grey;
   border: 1px solid red;
 
-  $class-prefix: span-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      width: calc(#{$n} / 24 * 100%);
-    }
-  }
-  $class-prefix: offset-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      margin-left: calc(#{$n} / 24 * 100%);
-    }
-  }
-
-
-  $class-prefix: xs-span-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      width: calc(#{$n} / 24 * 100%);
-    }
-  }
-  $class-prefix: xs-offset-;
-  @for $n from 1 through 24 {
-    &.#{$class-prefix}#{$n} {
-      margin-left: calc(#{$n} / 24 * 100%);
-    }
-  }
+  @include span-offset-classes(span-, offset-);
+  @include span-offset-classes(xs-span-, xs-offset-);
 
   @media (min-width: 768px) {
-    $class-prefix: sm-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: sm-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
-    }
+    @include span-offset-classes(sm-span-, sm-offset-);
   }
 
   @media (min-width: 992px) {
-    $class-prefix: md-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: md-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
-    }
+    @include span-offset-classes(md-span-, md-offset-);
   }
 
   @media (min-width: 1200px) {
-    $class-prefix: lg-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: lg-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
-    }
+    @include span-offset-classes(lg-span-, lg-offset-);
   }
 
   @media (min-width: 1920px) {
-    $class-prefix: xl-span-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        width: calc(#{$n} / 24 * 100%);
-      }
-    }
-    $class-prefix: xl-offset-;
-    @for $n from 1 through 24 {
-      &.#{$class-prefix}#{$n} {
-        margin-left: calc(#{$n} / 24 * 100%);
-      }
-    }
+    @include span-offset-classes(xl-span-, xl-offset-);
   }
 }
 </style>
