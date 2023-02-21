@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, useSlots} from 'vue';
+import {computed, onMounted, ref, useSlots} from 'vue';
 
 const props = defineProps({
   visible: {
@@ -47,26 +47,30 @@ const onClickClose = () => {
 };
 
 const slotContent = computed(() => useSlots().default!()[0].children);
-
+const toast = ref<HTMLDivElement>();
+const line = ref<HTMLElement>();
+onMounted(() => {
+  line.value!.style.height = toast.value?.getBoundingClientRect().height + 'px';
+});
 </script>
 
 <template>
-  <div class="gulu-toast" v-if="visible">
-    <template v-if="enableHtml">
-      <div v-html="slotContent"></div>
-    </template>
-    <template v-else>
-      <slot/>
-    </template>
+  <div class="gulu-toast" v-if="visible" ref="toast">
+    <div class="gulu-toast-message">
+      <div v-if="enableHtml" v-html="slotContent"></div>
+      <template v-else>
+        <slot/>
+      </template>
+    </div>
     <template v-if="closeButton">
-      <span class="gulu-toast-line"></span>
+      <span class="gulu-toast-line" ref="line"></span>
       <span class="gulu-toast-button" @click="onClickClose">{{ closeButton.text }}</span>
     </template>
   </div>
 </template>
 
 <style lang="scss" scoped>
-$toast-height: 40px;
+$toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 .gulu-toast {
   position: fixed;
@@ -74,7 +78,7 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   left: 50%;
   transform: translateX(-50%);
   font-size: var(--font-size);
-  height: $toast-height;
+  min-height: $toast-min-height;
   line-height: 1.8;
   background: $toast-bg;
   color: white;
@@ -82,18 +86,22 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   box-shadow: 0 0 3px rgba(0, 0, 0, .5);
   display: flex;
   align-items: center;
-  padding: 0 0 0 16px;
+  padding: 0 0 0 .8em;
+
+  &-message {
+    padding: .8em 0;
+  }
 
   &-line {
-    margin-left: 16px;
-    height: 100%;
+    margin-left: .8em;
     border-left: 1px solid #666;
   }
 
   &-button {
-    padding: 0 16px;
+    padding: 0 .8em;
     font-size: inherit;
     cursor: pointer;
+    flex-shrink: 0;
   }
 }
 </style>

@@ -20,7 +20,7 @@ const value = ref('王五');
 
 const showToast = () => {
   openToast({
-    message: '<h1>hi</h1>',
+    message: '<p>很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字123</p>',
     enableHtml:true,
     autoClose: true,
     autoCloseDelay: 50,
