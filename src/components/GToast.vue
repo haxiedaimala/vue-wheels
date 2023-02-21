@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import {computed, useSlots} from 'vue';
+
 const props = defineProps({
   visible: {
     type: Boolean,
@@ -20,6 +22,10 @@ const props = defineProps({
         callback: undefined
       };
     }
+  },
+  enableHtml: {
+    type: Boolean,
+    default: false
   }
 });
 const emits = defineEmits<{
@@ -39,11 +45,19 @@ const onClickClose = () => {
   }
   close();
 };
+
+const slotContent = computed(() => useSlots().default!()[0].children);
+
 </script>
 
 <template>
   <div class="gulu-toast" v-if="visible">
-    <slot/>
+    <template v-if="enableHtml">
+      <div v-html="slotContent"></div>
+    </template>
+    <template v-else>
+      <slot/>
+    </template>
     <template v-if="closeButton">
       <span class="gulu-toast-line"></span>
       <span class="gulu-toast-button" @click="onClickClose">{{ closeButton.text }}</span>

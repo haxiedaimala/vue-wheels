@@ -1,9 +1,9 @@
 import GToast from './GToast.vue';
-import {createApp, h, VNode} from 'vue';
+import {createApp, h} from 'vue';
 
 interface Options {
   visible?: boolean,
-  message: string | VNode;
+  message: string | Object;
   enableHtml?: boolean
   autoClose?: boolean;
   autoCloseDelay?: number;
@@ -11,7 +11,7 @@ interface Options {
 }
 
 export const openToast = (options: Options) => {
-  const {message,autoClose, autoCloseDelay, closeButton} = options;
+  const {message, enableHtml, autoClose, autoCloseDelay, closeButton} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
@@ -20,6 +20,7 @@ export const openToast = (options: Options) => {
         GToast,
         {
           visible: true,
+          enableHtml,
           autoClose,
           autoCloseDelay,
           closeButton,

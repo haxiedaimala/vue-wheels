@@ -10,7 +10,7 @@ import GMain from './components/GMain.vue';
 import GAside from './components/GAside.vue';
 import GFooter from './components/GFooter.vue';
 import {openToast} from './components/openToast';
-import {h, ref} from 'vue';
+import {ref} from 'vue';
 
 const loading1 = ref(true);
 const loading2 = ref(true);
@@ -20,7 +20,8 @@ const value = ref('王五');
 
 const showToast = () => {
   openToast({
-    message: h('h1', {}, `hello`),
+    message: '<h1>hi</h1>',
+    enableHtml:true,
     autoClose: true,
     autoCloseDelay: 50,
     closeButton: {
