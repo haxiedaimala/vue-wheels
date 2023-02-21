@@ -9,6 +9,7 @@ import GHeader from './components/GHeader.vue';
 import GMain from './components/GMain.vue';
 import GAside from './components/GAside.vue';
 import GFooter from './components/GFooter.vue';
+import GPopover from './components/GPopover.vue';
 import {openToast} from './components/openToast';
 import {ref} from 'vue';
 
@@ -18,10 +19,10 @@ const loading3 = ref(false);
 const visible = ref(true);
 const value = ref('王五');
 
-const showToast = (position:'top'|'bottom'|'middle') => {
+const showToast = (position: 'top' | 'bottom' | 'middle') => {
   openToast({
-    message: `<p>您的智商是 ${Math.floor(Math.random()*100)+1}。您需要进行充值</p>`,
-    position:position,
+    message: `<p>您的智商是 ${Math.floor(Math.random() * 100) + 1}。您需要进行充值</p>`,
+    position: position,
     enableHtml: true,
     autoClose: false,
     autoCloseDelay: 3,
@@ -33,18 +34,27 @@ const showToast = (position:'top'|'bottom'|'middle') => {
     }
   });
 };
-const showToast1=()=>{
-  showToast('top')
-}
-const showToast2=()=>{
-  showToast('middle')
-}
-const showToast3=()=>{
-  showToast('bottom')
-}
+const showToast1 = () => {
+  showToast('top');
+};
+const showToast2 = () => {
+  showToast('middle');
+};
+const showToast3 = () => {
+  showToast('bottom');
+};
 </script>
 
 <template>
+
+  <div style="margin: 100px;">
+    <g-popover>
+      <template #content>
+        这是一段 popover 文字
+      </template>
+      <button>click</button>
+    </g-popover>
+  </div>
 
   <button @click="showToast1">top</button>
   <button @click="showToast2">middle</button>
