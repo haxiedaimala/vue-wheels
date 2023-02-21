@@ -4,6 +4,11 @@ import GButtonGroup from './components/GButtonGroup.vue';
 import GInput from './components/GInput.vue';
 import GRow from './components/GRow.vue';
 import GCol from './components/GCol.vue';
+import GContainer from './components/GContainer.vue';
+import GHeader from './components/GHeader.vue';
+import GMain from './components/GMain.vue';
+import GAside from './components/GAside.vue';
+import GFooter from './components/GFooter.vue';
 import {ref} from 'vue';
 
 const loading1 = ref(true);
@@ -11,8 +16,24 @@ const loading2 = ref(true);
 const loading3 = ref(false);
 const value = ref('王五');
 </script>
-
+<style lang="scss">
+.demo {
+  border: 1px solid red;
+  min-height: 50px;
+}
+</style>
 <template>
+  <div class="box">
+    <g-container style="height:100vh">
+      <g-header class="demo">header</g-header>
+     <g-container>
+       <g-aside class="demo">aside</g-aside>
+       <g-main class="demo">main</g-main>
+     </g-container>
+      <g-footer class="demo">footer</g-footer>
+    </g-container>
+  </div>
+
   <div class="box">
     <g-row>
       <g-col span="8" :sm="{span:12}" :md="{span:8}"/>
@@ -110,7 +131,4 @@ const value = ref('王五');
 </template>
 
 <style lang="scss">
-.box {
-  margin: 10px;
-}
 </style>
