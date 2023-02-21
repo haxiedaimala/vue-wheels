@@ -8,4 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
+.gulu-main {
+  flex-grow: 1;
+}
 </style>

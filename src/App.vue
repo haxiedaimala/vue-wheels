@@ -26,13 +26,37 @@ const value = ref('王五');
   <div class="box">
     <g-container style="height:100vh">
       <g-header class="demo">header</g-header>
-     <g-container>
-       <g-aside class="demo">aside</g-aside>
-       <g-main class="demo">main</g-main>
-     </g-container>
-      <g-footer class="demo">footer</g-footer>
+      <g-container>
+        <g-aside class="demo" style="width: 200px;">aside</g-aside>
+        <g-container>
+          <g-main class="demo">main</g-main>
+          <g-footer class="demo">footer</g-footer>
+        </g-container>
+      </g-container>
     </g-container>
   </div>
+
+  <!--  <div class="box">-->
+  <!--    <g-container style="height:100vh">-->
+  <!--      <g-aside class="demo" style="width: 200px;">aside</g-aside>-->
+  <!--      <g-container>-->
+  <!--        <g-header class="demo">header</g-header>-->
+  <!--        <g-main class="demo">main</g-main>-->
+  <!--        <g-footer class="demo">footer</g-footer>-->
+  <!--      </g-container>-->
+  <!--    </g-container>-->
+  <!--  </div>-->
+
+  <!--  <div class="box">-->
+  <!--    <g-container style="height:100vh">-->
+  <!--      <g-header class="demo">header</g-header>-->
+  <!--      <g-container>-->
+  <!--        <g-aside class="demo" style="width: 200px;">aside</g-aside>-->
+  <!--        <g-main class="demo">main</g-main>-->
+  <!--      </g-container>-->
+  <!--      <g-footer class="demo">footer</g-footer>-->
+  <!--    </g-container>-->
+  <!--  </div>-->
 
   <div class="box">
     <g-row>
