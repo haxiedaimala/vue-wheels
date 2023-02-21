@@ -18,10 +18,10 @@ const loading3 = ref(false);
 const visible = ref(true);
 const value = ref('王五');
 
-const showToast = () => {
+const showToast = (position:'top'|'bottom'|'middle') => {
   openToast({
     message: `<p>您的智商是 ${Math.floor(Math.random()*100)+1}。您需要进行充值</p>`,
-    position:'top',
+    position:position,
     enableHtml: true,
     autoClose: false,
     autoCloseDelay: 3,
@@ -33,12 +33,22 @@ const showToast = () => {
     }
   });
 };
+const showToast1=()=>{
+  showToast('top')
+}
+const showToast2=()=>{
+  showToast('middle')
+}
+const showToast3=()=>{
+  showToast('bottom')
+}
 </script>
 
 <template>
 
-  <button @click="showToast">toggle</button>
-
+  <button @click="showToast1">top</button>
+  <button @click="showToast2">middle</button>
+  <button @click="showToast3">bottom</button>
   <!--  <div class="box">-->
   <!--    <g-container style="height:100vh">-->
   <!--      <g-header class="demo">header</g-header>-->
