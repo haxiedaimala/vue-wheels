@@ -9,6 +9,7 @@ import GHeader from './components/GHeader.vue';
 import GMain from './components/GMain.vue';
 import GAside from './components/GAside.vue';
 import GFooter from './components/GFooter.vue';
+import {openToast} from './components/openToast';
 import {ref} from 'vue';
 
 const loading1 = ref(true);
@@ -16,14 +17,16 @@ const loading2 = ref(true);
 const loading3 = ref(false);
 const visible = ref(true);
 const value = ref('王五');
-</script>
-<style lang="scss">
-.demo {
-  border: 1px solid red;
-  min-height: 50px;
+const showToast=()=>{
+  openToast({message:'hello'})
+  console.log(1);
 }
-</style>
+</script>
+
 <template>
+
+  <button @click="showToast">toggle</button>
+
   <!--  <div class="box">-->
   <!--    <g-container style="height:100vh">-->
   <!--      <g-header class="demo">header</g-header>-->
@@ -156,4 +159,8 @@ const value = ref('王五');
 </template>
 
 <style lang="scss">
+.demo {
+  border: 1px solid red;
+  min-height: 50px;
+}
 </style>
