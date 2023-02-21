@@ -1,16 +1,60 @@
 <script setup lang="ts">
+const props = defineProps({
+  visible: {
+    type: Boolean,
+    default: false
+  },
+  autoClose: {
+    type: Boolean,
+    default: true
+  },
+  autoCloseDelay: {
+    type: Number,
+    default: 3
+  },
+  closeButton: {
+    type: Object,
+    default: () => {
+      return {
+        text: '关闭',
+        callback: undefined
+      };
+    }
+  }
+});
+const emits = defineEmits<{
+  (e: 'update:visible', value: boolean): void
+}>();
+
+const close = () => emits('update:visible', !props.visible);
+if (props.autoClose) {
+  setTimeout(() => {
+    close();
+  }, props.autoCloseDelay * 1000);
+}
+
+const onClickClose = () => {
+  if (typeof props.closeButton?.callback === 'function') {
+    props.closeButton.callback();
+  }
+  close();
+};
 </script>
 
 <template>
-  <div class="gulu-toast">
+  <div class="gulu-toast" v-if="visible">
     <slot/>
+    <template v-if="closeButton">
+      <span class="gulu-toast-line"></span>
+      <span class="gulu-toast-button" @click="onClickClose">{{ closeButton.text }}</span>
+    </template>
   </div>
 </template>
 
 <style lang="scss" scoped>
 $toast-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
-.gulu-toast{
+.gulu-toast {
   position: fixed;
   top: 0;
   left: 50%;
@@ -21,9 +65,21 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   background: $toast-bg;
   color: white;
   border-radius: var(--border-radius);
-  box-shadow: 0 0 3px rgba(0,0,0,.5);
+  box-shadow: 0 0 3px rgba(0, 0, 0, .5);
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 0 0 0 16px;
+
+  &-line {
+    margin-left: 16px;
+    height: 100%;
+    border-left: 1px solid #666;
+  }
+
+  &-button {
+    padding: 0 16px;
+    font-size: inherit;
+    cursor: pointer;
+  }
 }
 </style>

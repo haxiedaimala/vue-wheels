@@ -1,18 +1,36 @@
 import GToast from './GToast.vue';
-import {createApp, h} from 'vue';
+import {createApp, h, VNode} from 'vue';
 
 interface Options {
-  message: string;
+  visible?: boolean,
+  message: string | VNode;
+  enableHtml?: boolean
+  autoClose?: boolean;
+  autoCloseDelay?: number;
+  closeButton?: { text: string, callback?: (xxx: any) => void };
 }
 
 export const openToast = (options: Options) => {
-  const {message} = options;
+  const {message,autoClose, autoCloseDelay, closeButton} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
-  console.log(message);
-  createApp({
+  const app = createApp({
     render() {
-      return h(GToast, {}, {default: message});
+      return h(
+        GToast,
+        {
+          visible: true,
+          autoClose,
+          autoCloseDelay,
+          closeButton,
+          'onUpdate:visible': () => {
+            app.unmount();
+            div.remove();
+          },
+        },
+        {default: message}
+      );
     }
-  }).mount(div);
+  });
+  app.mount(div);
 };
