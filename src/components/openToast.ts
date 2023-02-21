@@ -11,8 +11,15 @@ interface Options {
   closeButton?: { text: string, callback?: (xxx: any) => void };
 }
 
+
 export const openToast = (options: Options) => {
-  const {message, position,enableHtml, autoClose, autoCloseDelay, closeButton} = options;
+  function close() {
+    app.unmount();
+    div.remove();
+  }
+
+  const divItems = document.querySelectorAll('div[data-v-app]:not([id])');
+  const {message, position, enableHtml, autoClose, autoCloseDelay, closeButton} = options;
   const div = document.createElement('div');
   document.body.appendChild(div);
   const app = createApp({
@@ -27,13 +34,16 @@ export const openToast = (options: Options) => {
           autoCloseDelay,
           closeButton,
           'onUpdate:visible': () => {
-            app.unmount();
-            div.remove();
+            close();
           },
         },
         {default: message}
       );
     }
   });
+
+  if (divItems.length >= 1) {
+    divItems[0].remove();
+  }
   app.mount(div);
 };

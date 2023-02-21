@@ -20,7 +20,7 @@ const value = ref('王五');
 
 const showToast = () => {
   openToast({
-    message: '<p>您需要进行充值</p>',
+    message: `<p>您的智商是 ${Math.floor(Math.random()*100)+1}。您需要进行充值</p>`,
     position:'top',
     enableHtml: true,
     autoClose: false,
