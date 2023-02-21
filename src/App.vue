@@ -20,12 +20,13 @@ const value = ref('王五');
 
 const showToast = () => {
   openToast({
-    message: '<p>很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字很多文字123</p>',
-    enableHtml:true,
-    autoClose: true,
-    autoCloseDelay: 50,
+    message: '<p>您需要进行充值</p>',
+    position:'top',
+    enableHtml: true,
+    autoClose: false,
+    autoCloseDelay: 3,
     closeButton: {
-      text: '知道了',
+      text: '已充值',
       callback() {
         console.log('用户知道了');
       }

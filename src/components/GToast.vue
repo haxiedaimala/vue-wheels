@@ -26,6 +26,13 @@ const props = defineProps({
   enableHtml: {
     type: Boolean,
     default: false
+  },
+  position: {
+    type: String,
+    default: 'top',
+    validator: (val: string) => {
+      return ['top', 'middle', 'bottom'].indexOf(val) !== -1;
+    }
   }
 });
 const emits = defineEmits<{
@@ -55,7 +62,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="gulu-toast" v-if="visible" ref="toast">
+  <div class="gulu-toast" v-if="visible" ref="toast" :class="{[`position-${position}`]:position}">
     <div class="gulu-toast-message">
       <div v-if="enableHtml" v-html="slotContent"></div>
       <template v-else>
@@ -74,9 +81,8 @@ $toast-min-height: 40px;
 $toast-bg: rgba(0, 0, 0, 0.75);
 .gulu-toast {
   position: fixed;
-  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 0);
   font-size: var(--font-size);
   min-height: $toast-min-height;
   line-height: 1.8;
@@ -87,6 +93,20 @@ $toast-bg: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
   padding: 0 0 0 .8em;
+
+  &.position-top {
+    top: 0;
+  }
+
+  &.position-bottom {
+    bottom: 0;
+  }
+
+  &.position-middle {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &-message {
     padding: .8em 0;
