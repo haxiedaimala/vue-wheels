@@ -14,6 +14,7 @@ import {ref} from 'vue';
 const loading1 = ref(true);
 const loading2 = ref(true);
 const loading3 = ref(false);
+const visible = ref(true);
 const value = ref('王五');
 </script>
 <style lang="scss">
@@ -23,29 +24,29 @@ const value = ref('王五');
 }
 </style>
 <template>
-  <div class="box">
-    <g-container style="height:100vh">
-      <g-header class="demo">header</g-header>
-      <g-container>
-        <g-aside class="demo" style="width: 200px;">aside</g-aside>
-        <g-container>
-          <g-main class="demo">main</g-main>
-          <g-footer class="demo">footer</g-footer>
-        </g-container>
-      </g-container>
-    </g-container>
-  </div>
-
   <!--  <div class="box">-->
   <!--    <g-container style="height:100vh">-->
-  <!--      <g-aside class="demo" style="width: 200px;">aside</g-aside>-->
+  <!--      <g-header class="demo">header</g-header>-->
   <!--      <g-container>-->
-  <!--        <g-header class="demo">header</g-header>-->
-  <!--        <g-main class="demo">main</g-main>-->
-  <!--        <g-footer class="demo">footer</g-footer>-->
+  <!--        <g-aside class="demo" style="width: 200px;">aside</g-aside>-->
+  <!--        <g-container>-->
+  <!--          <g-main class="demo">main</g-main>-->
+  <!--          <g-footer class="demo">footer</g-footer>-->
+  <!--        </g-container>-->
   <!--      </g-container>-->
   <!--    </g-container>-->
   <!--  </div>-->
+
+  <div class="box">
+    <g-container style="height:100vh">
+      <g-aside v-model:visible="visible" class="demo" style="width: 200px;">aside</g-aside>
+      <g-container>
+        <g-header class="demo">header</g-header>
+        <g-main class="demo">main</g-main>
+        <g-footer class="demo">footer</g-footer>
+      </g-container>
+    </g-container>
+  </div>
 
   <!--  <div class="box">-->
   <!--    <g-container style="height:100vh">-->
