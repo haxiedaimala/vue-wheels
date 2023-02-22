@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 
-const visible = ref(false);
+const visible = ref(true);
 const toggleVisible = () => {
   visible.value = !visible.value;
   if (visible.value === true) {
@@ -11,15 +11,25 @@ const toggleVisible = () => {
     });
   }
 };
-
+const trigger = ref<HTMLSpanElement>();
+let popover = ref<HTMLDivElement>();
+onMounted(() => {
+  const {top, left} = trigger.value!.getBoundingClientRect();
+  popover.value!.style.left = left + window.scrollX + 'px';
+  popover.value!.style.top = top + window.screenY + 'px';
+});
 </script>
 
 <template>
   <div class="gulu-popover" @click.stop="toggleVisible">
-    <div class="gulu-popover-content" v-if="visible" @click.stop>
-      <slot name="content"/>
-    </div>
-    <slot/>
+    <Teleport to="body">
+      <div class="gulu-popover-content" v-show="visible" @click.stop ref="popover">
+        <slot name="content"/>
+      </div>
+    </Teleport>
+    <span ref="trigger">
+      <slot/>
+   </span>
   </div>
 </template>
 
@@ -32,10 +42,9 @@ const toggleVisible = () => {
   > &-content {
     position: absolute;
     padding: .5em;
-    bottom: 100%;
-    left: 0;
     border: 1px solid red;
     box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+    transform: translateY(-100%);
   }
 }
 </style>

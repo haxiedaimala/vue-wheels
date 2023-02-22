@@ -47,7 +47,7 @@ const showToast3 = () => {
 
 <template>
 
-  <div style="margin: 100px;">
+  <div style="overflow:hidden;margin: 100px;padding: 10px;border: 1px solid red;">
     <g-popover>
       <template #content>
         这是一段 popover 文字
