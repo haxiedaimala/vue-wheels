@@ -4,17 +4,22 @@ import {ref} from 'vue';
 const visible = ref(false);
 const toggleVisible = () => {
   visible.value = !visible.value;
+  if (visible.value === true) {
+    document.addEventListener('click', function xxx() {
+      visible.value = false;
+      document.removeEventListener('click', xxx);
+    });
+  }
 };
+
 </script>
 
 <template>
-  <div class="gulu-popover">
-    <div class="gulu-popover-content" v-if="visible">
+  <div class="gulu-popover" @click.stop="toggleVisible">
+    <div class="gulu-popover-content" v-if="visible" @click.stop>
       <slot name="content"/>
     </div>
-    <div @click="toggleVisible">
-      <slot/>
-    </div>
+    <slot/>
   </div>
 </template>
 
