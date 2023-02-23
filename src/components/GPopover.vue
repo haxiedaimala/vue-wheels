@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import {nextTick, ref} from 'vue';
 
+const props = defineProps({
+  position: {
+    type: String,
+    default: 'top',
+    validator: (value: string) => {
+      return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1;
+    }
+  }
+});
 const visible = ref(false);
 const trigger = ref<HTMLSpanElement>();
 const popover = ref<HTMLDivElement>();
@@ -10,9 +19,22 @@ const onClickDocument = (e: MouseEvent) => {
   }
 };
 const positionContent = () => {
-  const {top, left} = trigger.value!.getBoundingClientRect();
-  popover.value!.style.left = left + window.scrollX + 'px';
-  popover.value!.style.top = top + window.screenY + 'px';
+  const {width, height, top, left} = trigger.value!.getBoundingClientRect();
+  if (props.position === 'top') {
+    popover.value!.style.left = left + window.scrollX + 'px';
+    popover.value!.style.top = top + window.screenY + 'px';
+  } else if (props.position === 'bottom') {
+    popover.value!.style.left = left + window.scrollX + 'px';
+    popover.value!.style.top = top + height + window.screenY + 'px';
+  } else if (props.position === 'left') {
+    const {height: height2} = popover.value!.getBoundingClientRect();
+    popover.value!.style.left = left + window.scrollX + 'px';
+    popover.value!.style.top = top + (height - height2) / 2 + window.screenY + 'px';
+  } else if (props.position === 'right') {
+    const {height: height2} = popover.value!.getBoundingClientRect();
+    popover.value!.style.left = left + width + window.scrollX + 'px';
+    popover.value!.style.top = top + (height - height2) / 2 + window.screenY + 'px';
+  }
 };
 
 const open = () => {
@@ -34,7 +56,7 @@ const toggleVisible = () => {
 <template>
   <div class="gulu-popover">
     <Teleport to="body">
-      <div class="gulu-popover-content" v-show="visible" ref="popover">
+      <div class="gulu-popover-content" :class="{[`position-${position}`]:position}" v-show="visible" ref="popover">
         <slot name="content"/>
       </div>
     </Teleport>
@@ -64,7 +86,6 @@ $border-raiuds: 4px;
     border-radius: $border-raiuds;
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25));
     background: #fff;
-    transform: translateY(calc(-100% - 1em));
     max-width: 20em;
     word-break: break-all;
 
@@ -73,15 +94,85 @@ $border-raiuds: 4px;
       width: 0;
       height: 0;
       border: 10px solid transparent;
-      border-top-color: black;
       position: absolute;
-      top: 100%;
-      left: 10px;
     }
 
-    &::after {
-      border-top-color: white;
-      top: calc(100% - 1px);
+    &.position-top {
+      transform: translateY(calc(-100% - 10px));
+
+      &::before,
+      &::after {
+        left: 10px;
+      }
+
+      &::before {
+        border-top-color: black;
+        top: 100%;
+      }
+
+      &::after {
+        border-top-color: white;
+        top: calc(100% - 1px);
+      }
+    }
+
+    &.position-bottom {
+      transform: translateY(10px);
+
+      &::before,
+      &::after {
+        left: 10px;
+      }
+
+      &::before {
+        border-bottom-color: black;
+        bottom: 100%;
+      }
+
+      &::after {
+        border-bottom-color: white;
+        bottom: calc(100% - 1px);
+      }
+    }
+
+    &.position-left {
+      transform: translateX(calc(-100% - 10px));
+
+      &::before,
+      &::after {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        border-left-color: black;
+        left: 100%;
+      }
+
+      &::after {
+        border-left-color: white;
+        left: calc(100% - 1px);
+      }
+    }
+
+    &.position-right {
+      transform: translateX(10px);
+
+      &::before,
+      &::after {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &::before {
+        border-right-color: black;
+        right: 100%;
+      }
+
+      &::after {
+        border-right-color: white;
+        right: calc(100% - 1px);
+      }
     }
   }
 }
