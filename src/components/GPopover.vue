@@ -4,7 +4,7 @@ import {nextTick, ref} from 'vue';
 const visible = ref(false);
 const trigger = ref<HTMLSpanElement>();
 const popover = ref<HTMLDivElement>();
-const eventHandler = (e: MouseEvent) => {
+const onClickDocument = (e: MouseEvent) => {
   if (!popover.value?.contains(e.target as HTMLElement) && !trigger.value?.contains(e.target as HTMLElement)) {
     close();
   }
@@ -14,39 +14,31 @@ const positionContent = () => {
   popover.value!.style.left = left + window.scrollX + 'px';
   popover.value!.style.top = top + window.screenY + 'px';
 };
-const listenToDocument = () => {
-  document.addEventListener('click', eventHandler);
-};
+
 const open = () => {
   visible.value = true;
   nextTick(() => {
     positionContent();
-    listenToDocument();
+    document.addEventListener('click', onClickDocument);
   });
 };
 const close = () => {
   visible.value = false;
-  document.removeEventListener('click', eventHandler);
+  document.removeEventListener('click', onClickDocument);
 };
-const toggleVisible = (e: MouseEvent) => {
-  if (trigger.value?.contains(e.target as HTMLElement)) {
-    if (visible.value) {
-      close();
-    } else {
-      open();
-    }
-  }
+const toggleVisible = () => {
+  visible.value ? close() : open();
 };
 </script>
 
 <template>
-  <div class="gulu-popover" @click="toggleVisible">
+  <div class="gulu-popover">
     <Teleport to="body">
       <div class="gulu-popover-content" v-show="visible" ref="popover">
         <slot name="content"/>
       </div>
     </Teleport>
-    <span ref="trigger">
+    <span ref="trigger" @click="toggleVisible">
       <slot/>
    </span>
   </div>
