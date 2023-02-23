@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {nextTick, ref} from 'vue';
+import {nextTick, onMounted, onUnmounted, ref} from 'vue';
 
 const props = defineProps({
   position: {
@@ -7,6 +7,13 @@ const props = defineProps({
     default: 'top',
     validator: (value: string) => {
       return ['top', 'bottom', 'left', 'right'].indexOf(value) !== -1;
+    }
+  },
+  trigger: {
+    type: String,
+    default: 'click',
+    validator: (value: string) => {
+      return ['click', 'hover'].indexOf(value) >= 0;
     }
   }
 });
@@ -49,16 +56,32 @@ const open = () => {
   visible.value = true;
   nextTick(() => {
     positionContent();
-    document.addEventListener('click', onClickDocument);
+    props.trigger === 'click' ? document.addEventListener('click', onClickDocument) : '';
   });
 };
 const close = () => {
   visible.value = false;
-  document.removeEventListener('click', onClickDocument);
+  props.trigger === 'click' ? document.removeEventListener('click', onClickDocument) : '';
 };
 const toggleVisible = () => {
   visible.value ? close() : open();
 };
+onMounted(() => {
+  if (props.trigger === 'click') {
+    triggerItem.value?.addEventListener('click', toggleVisible);
+  } else if (props.trigger === 'hover') {
+    triggerItem.value?.addEventListener('mouseenter', open);
+    triggerItem.value?.addEventListener('mouseleave', close);
+  }
+});
+onUnmounted(() => {
+  if (props.trigger === 'click') {
+    triggerItem.value?.removeEventListener('click', toggleVisible);
+  } else if (props.trigger === 'hover') {
+    triggerItem.value?.removeEventListener('mouseenter', open);
+    triggerItem.value?.removeEventListener('mouseleave', close);
+  }
+});
 </script>
 
 <template>
@@ -68,7 +91,7 @@ const toggleVisible = () => {
         <slot name="content"/>
       </div>
     </Teleport>
-    <span class="gulu-popover-trigger" ref="triggerItem" @click="toggleVisible">
+    <span class="gulu-popover-trigger" ref="triggerItem">
       <slot/>
    </span>
   </div>
