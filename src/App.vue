@@ -47,12 +47,18 @@ const showToast3 = () => {
 
 <template>
 
-  <div style="overflow:hidden;margin: 100px;padding: 10px;border: 1px solid red;">
+  <div style="overflow:hidden;margin: 100px;padding: 20px;">
     <g-popover>
       <template #content>
         这是一段 popover 文字
       </template>
-      <button>click</button>
+      <g-button>click</g-button>
+    </g-popover>
+    <g-popover>
+      <template #content>
+        这是一段 popover 文字
+      </template>
+      <g-button>click</g-button>
     </g-popover>
   </div>
 

@@ -38,24 +38,48 @@ const toggleVisible = () => {
         <slot name="content"/>
       </div>
     </Teleport>
-    <span ref="trigger" @click="toggleVisible">
+    <span class="gulu-popover-trigger" ref="trigger" @click="toggleVisible">
       <slot/>
    </span>
   </div>
 </template>
 
 <style lang="scss" scoped>
+$border-color: #333;
+$border-raiuds: 4px;
+
 .gulu-popover {
   display: inline-block;
   vertical-align: middle;
   position: relative;
 
+  > &-trigger {
+    display: inline-block;
+  }
+
   > &-content {
     position: absolute;
-    padding: .5em;
-    border: 1px solid red;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .5);
-    transform: translateY(-100%);
+    padding: .5em 1em;
+    border: 1px solid $border-color;
+    border-radius: $border-raiuds;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
+    transform: translateY(calc(-100% - 1em - 12px));
+
+    &::before, &::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top-color: black;
+      position: absolute;
+      top: 100%;
+      left: 10px;
+    }
+
+    &::after {
+      border-top-color: white;
+      top: calc(100% - 1px);
+    }
   }
 }
 </style>
