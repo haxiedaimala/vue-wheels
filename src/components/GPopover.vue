@@ -62,8 +62,11 @@ $border-raiuds: 4px;
     padding: .5em 1em;
     border: 1px solid $border-color;
     border-radius: $border-raiuds;
-    box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-    transform: translateY(calc(-100% - 1em - 12px));
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .25));
+    background: #fff;
+    transform: translateY(calc(-100% - 1em));
+    max-width: 20em;
+    word-break: break-all;
 
     &::before, &::after {
       content: '';

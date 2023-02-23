@@ -50,7 +50,7 @@ const showToast3 = () => {
   <div style="overflow:hidden;margin: 100px;padding: 20px;">
     <g-popover>
       <template #content>
-        这是一段 popover 文字
+       abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
       </template>
       <g-button>click</g-button>
     </g-popover>
