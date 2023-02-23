@@ -20,21 +20,29 @@ const onClickDocument = (e: MouseEvent) => {
 };
 const positionContent = () => {
   const {width, height, top, left} = trigger.value!.getBoundingClientRect();
-  if (props.position === 'top') {
-    popover.value!.style.left = left + window.scrollX + 'px';
-    popover.value!.style.top = top + window.screenY + 'px';
-  } else if (props.position === 'bottom') {
-    popover.value!.style.left = left + window.scrollX + 'px';
-    popover.value!.style.top = top + height + window.screenY + 'px';
-  } else if (props.position === 'left') {
-    const {height: height2} = popover.value!.getBoundingClientRect();
-    popover.value!.style.left = left + window.scrollX + 'px';
-    popover.value!.style.top = top + (height - height2) / 2 + window.screenY + 'px';
-  } else if (props.position === 'right') {
-    const {height: height2} = popover.value!.getBoundingClientRect();
-    popover.value!.style.left = left + width + window.scrollX + 'px';
-    popover.value!.style.top = top + (height - height2) / 2 + window.screenY + 'px';
-  }
+  const {height: height2} = popover.value!.getBoundingClientRect();
+  const xxx = {
+    top: {
+      left: left + window.scrollX,
+      top: top + window.screenY
+    },
+    bottom: {
+      left: left + window.scrollX,
+      top: top + height + window.screenY
+    },
+    left: {
+      left: left + window.scrollX,
+      top: top + (height - height2) / 2 + window.screenY
+    },
+    right: {
+      left: left + width + window.scrollX,
+      top: top + (height - height2) / 2 + window.screenY
+    }
+  };
+  //@ts-ignore
+  popover.value!.style.left = xxx[props.position].left + 'px';
+  //@ts-ignore
+  popover.value!.style.top = xxx[props.position].top + 'px';
 };
 
 const open = () => {
