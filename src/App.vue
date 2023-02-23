@@ -48,6 +48,15 @@ const showToast3 = () => {
 <template>
   <div style="overflow:hidden;margin: 30px;padding: 20px;">
     <g-popover position="bottom">
+      <template #content="{close}">
+        abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
+        <g-button @click="close">关闭</g-button>
+      </template>
+      <g-button>click</g-button>
+    </g-popover>
+  </div>
+  <div style="overflow:hidden;margin: 30px;padding: 20px;">
+    <g-popover position="bottom">
       <template #content>
         abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
       </template>

@@ -88,7 +88,7 @@ onUnmounted(() => {
   <div class="gulu-popover">
     <Teleport to="body">
       <div class="gulu-popover-content" :class="{[`position-${position}`]:position}" v-show="visible" ref="popover">
-        <slot name="content"/>
+        <slot name="content" :close="close"/>
       </div>
     </Teleport>
     <span class="gulu-popover-trigger" ref="triggerItem">
