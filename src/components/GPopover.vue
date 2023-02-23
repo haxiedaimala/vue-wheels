@@ -11,15 +11,15 @@ const props = defineProps({
   }
 });
 const visible = ref(false);
-const trigger = ref<HTMLSpanElement>();
+const triggerItem = ref<HTMLSpanElement>();
 const popover = ref<HTMLDivElement>();
 const onClickDocument = (e: MouseEvent) => {
-  if (!popover.value?.contains(e.target as HTMLElement) && !trigger.value?.contains(e.target as HTMLElement)) {
+  if (!popover.value?.contains(e.target as HTMLElement) && !triggerItem.value?.contains(e.target as HTMLElement)) {
     close();
   }
 };
 const positionContent = () => {
-  const {width, height, top, left} = trigger.value!.getBoundingClientRect();
+  const {width, height, top, left} = triggerItem.value!.getBoundingClientRect();
   const {height: height2} = popover.value!.getBoundingClientRect();
   const xxx = {
     top: {
@@ -68,7 +68,7 @@ const toggleVisible = () => {
         <slot name="content"/>
       </div>
     </Teleport>
-    <span class="gulu-popover-trigger" ref="trigger" @click="toggleVisible">
+    <span class="gulu-popover-trigger" ref="triggerItem" @click="toggleVisible">
       <slot/>
    </span>
   </div>

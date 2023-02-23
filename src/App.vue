@@ -47,7 +47,7 @@ const showToast3 = () => {
 
 <template>
 
-  <div style="overflow:hidden;margin: 100px;padding: 20px;">
+  <div style="overflow:hidden;margin: 30px;padding: 20px;">
     <g-popover position="bottom">
       <template #content>
         abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
@@ -67,6 +67,32 @@ const showToast3 = () => {
       <g-button>click</g-button>
     </g-popover>
     <g-popover position="right">
+      <template #content>
+        abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
+      </template>
+      <g-button>click</g-button>
+    </g-popover>
+  </div>
+  <div style="overflow:hidden;margin: 30px;padding: 20px;">
+    <g-popover position="bottom" trigger="hover">
+      <template #content>
+        abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
+      </template>
+      <g-button>click</g-button>
+    </g-popover>
+    <g-popover trigger="hover">
+      <template #content>
+        这是一段 popover 文字
+      </template>
+      <g-button>click</g-button>
+    </g-popover>
+    <g-popover position="left" trigger="hover">
+      <template #content>
+        abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
+      </template>
+      <g-button>click</g-button>
+    </g-popover>
+    <g-popover position="right" trigger="hover">
       <template #content>
         abnbjdcnsdknvjdfvbndfjbnfdjbnfjbnfjbnfgcsdsdfdsgfdgfdg
       </template>
