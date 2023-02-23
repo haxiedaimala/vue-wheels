@@ -6,7 +6,9 @@ const trigger = ref<HTMLSpanElement>();
 const popover = ref<HTMLDivElement>();
 const eventHandler = (e: MouseEvent) => {
   if (!popover.value?.contains(e.target as HTMLElement) && !trigger.value?.contains(e.target as HTMLElement)) {
+    console.log(' document close');
     visible.value = false;
+    console.log('移除监听');
     document.removeEventListener('click', eventHandler);
   }
 };
@@ -16,6 +18,7 @@ const positionContent = () => {
   popover.value!.style.top = top + window.screenY + 'px';
 };
 const listenToDocument = () => {
+  console.log('增加监听');
   document.addEventListener('click', eventHandler);
 };
 const open = () => {
@@ -29,6 +32,8 @@ const toggleVisible = (e: MouseEvent) => {
     visible.value = !visible.value;
     if (visible.value === true) {
       open();
+    } else {
+      console.log('button close');
     }
   }
 };
