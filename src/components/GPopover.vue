@@ -4,25 +4,31 @@ import {nextTick, ref} from 'vue';
 const visible = ref(false);
 const trigger = ref<HTMLSpanElement>();
 const popover = ref<HTMLDivElement>();
-
+const eventHandler = (e: MouseEvent) => {
+  if (!popover.value?.contains(e.target as HTMLElement) && !trigger.value?.contains(e.target as HTMLElement)) {
+    visible.value = false;
+    document.removeEventListener('click', eventHandler);
+  }
+};
+const positionContent = () => {
+  const {top, left} = trigger.value!.getBoundingClientRect();
+  popover.value!.style.left = left + window.scrollX + 'px';
+  popover.value!.style.top = top + window.screenY + 'px';
+};
+const listenToDocument = () => {
+  document.addEventListener('click', eventHandler);
+};
+const open = () => {
+  nextTick(() => {
+    positionContent();
+    listenToDocument();
+  });
+};
 const toggleVisible = (e: MouseEvent) => {
   if (trigger.value?.contains(e.target as HTMLElement)) {
     visible.value = !visible.value;
     if (visible.value === true) {
-      nextTick(() => {
-        const {top, left} = trigger.value!.getBoundingClientRect();
-        popover.value!.style.left = left + window.scrollX + 'px';
-        popover.value!.style.top = top + window.screenY + 'px';
-        const xxx = (e: MouseEvent) => {
-          if (popover.value?.contains(e.target as HTMLElement) || trigger.value?.contains(e.target as HTMLElement)) {
-
-          } else {
-            visible.value = false;
-            document.removeEventListener('click', xxx);
-          }
-        };
-        document.addEventListener('click', xxx);
-      });
+      open();
     }
   }
 };
