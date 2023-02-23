@@ -43,11 +43,14 @@ const showToast2 = () => {
 const showToast3 = () => {
   showToast('bottom');
 };
+const yyy=()=>{
+  console.log('yyy');
+}
 </script>
 
 <template>
 
-  <div style="overflow:hidden;margin: 100px;padding: 10px;border: 1px solid red;">
+  <div @click="yyy" style="overflow:hidden;margin: 100px;padding: 10px;border: 1px solid red;">
     <g-popover>
       <template #content>
         这是一段 popover 文字
