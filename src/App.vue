@@ -10,6 +10,8 @@ import GMain from './components/GMain.vue';
 import GAside from './components/GAside.vue';
 import GFooter from './components/GFooter.vue';
 import GPopover from './components/GPopover.vue';
+import GCollapse from './components/GCollapse.vue';
+import GCollapseItem from './components/GCollapseItem.vue';
 import {openToast} from './components/openToast';
 import {ref} from 'vue';
 
@@ -18,7 +20,8 @@ const loading2 = ref(true);
 const loading3 = ref(false);
 const visible = ref(true);
 const value = ref('王五');
-
+const activeName = ref(['3']);
+const activeName2 = ref(['3']);
 const showToast = (position: 'top' | 'bottom' | 'middle') => {
   openToast({
     message: `<p>您的智商是 ${Math.floor(Math.random() * 100) + 1}。您需要进行充值</p>`,
@@ -46,6 +49,22 @@ const showToast3 = () => {
 </script>
 
 <template>
+  <div style="margin: 30px;">
+    <g-collapse v-model:visible="activeName" accordion>
+      <g-collapse-item title="标题一first" name="1">内容1111</g-collapse-item>
+      <g-collapse-item title="标题二second" name="2">内容2222</g-collapse-item>
+      <g-collapse-item title="标题三third" name="3">内容3333</g-collapse-item>
+    </g-collapse>
+  </div>
+  <div style="margin: 30px;">
+    <g-collapse v-model:visible="activeName2">
+      <g-collapse-item title="标题一first" name="1">内容1111</g-collapse-item>
+      <g-collapse-item title="标题二second" name="2">内容2222</g-collapse-item>
+      <g-collapse-item title="标题三third" name="3">内容3333</g-collapse-item>
+    </g-collapse>
+  </div>
+
+
   <div style="overflow:hidden;margin: 30px;padding: 20px;">
     <g-popover position="bottom">
       <template #content="{close}">
