@@ -22,15 +22,15 @@ defaults.forEach(node => {
 });
 const toggleCollapse = (value: string) => {
   let arr = [];
-  if (props.accordion) {
-    emits('update:visible', value);
-  } else {
-    for (let visible of props.visible) {
-      arr.push(visible);
-    }
-    arr.indexOf(value) === -1 ? arr.push(value) : (arr = arr.filter(num => num !== value));
-    emits('update:visible', arr);
+  for (let visible of props.visible) {
+    arr.push(visible);
   }
+  if (props.accordion) {
+    arr.indexOf(value) === -1 ? arr.splice(0, 1, value) : arr.splice(0, 1);
+  } else {
+    arr.indexOf(value) === -1 ? arr.push(value) : (arr = arr.filter(num => num !== value));
+  }
+  emits('update:visible', arr);
 };
 
 </script>
@@ -63,11 +63,13 @@ $border-raiuds: 4px;
       align-items: center;
       padding: 0 8px;
       border-bottom: 1px solid $grey;
+      cursor: pointer;
     }
 
     &-content {
       padding: 8px;
       border-bottom: 1px solid $grey;
+
     }
 
     &:last-child {
