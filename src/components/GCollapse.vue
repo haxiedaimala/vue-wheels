@@ -41,8 +41,8 @@ const toggleCollapse = (value: string) => {
       <div class="gulu-collapse-title" @click="toggleCollapse(c.props.name)">
         {{ c.props.title }}
       </div>
-      <div class="gulu-collapse-content">
-        <component :is="c" v-if="props.visible.indexOf(c.props.name)>=0"/>
+      <div class="gulu-collapse-content" :class="{visible:props.visible.indexOf(c.props.name)>=0}">
+        <component :is="c"/>
       </div>
     </div>
   </div>
@@ -57,24 +57,41 @@ $border-raiuds: 4px;
   border-radius: $border-raiuds;
 
   .gulu-collapse {
+    padding: 0 1em;
+
     &-title {
       min-height: 32px;
       display: flex;
       align-items: center;
-      padding: 0 8px;
+      padding: 1em 0;
       border-bottom: 1px solid $grey;
       cursor: pointer;
     }
 
     &-content {
-      padding: 8px;
-      border-bottom: 1px solid $grey;
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      transition: all 250ms;
 
+      &.visible {
+        border-bottom: 1px solid $grey;
+        padding: 1em 0;
+        height: auto;
+      }
     }
 
     &:last-child {
+      .gulu-collapse-title {
+        border-bottom: none;
+      }
+
       .gulu-collapse-content {
         border-bottom: none;
+
+        &.visible {
+          border-top: 1px solid $grey;
+        }
       }
     }
   }
