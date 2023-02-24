@@ -37,11 +37,12 @@ const toggleCollapse = (value: string) => {
 
 <template>
   <div class="gulu-collapse-wrapper">
-    <div class="gulu-collapse" v-for="(c,index) in defaults" :key="index">
+    <div class="gulu-collapse" v-for="(c,index) in defaults" :key="index"
+         :class="{visible:props.visible.indexOf(c.props.name)>=0}">
       <div class="gulu-collapse-title" @click="toggleCollapse(c.props.name)">
         {{ c.props.title }}
       </div>
-      <div class="gulu-collapse-content" :class="{visible:props.visible.indexOf(c.props.name)>=0}">
+      <div class="gulu-collapse-content">
         <component :is="c"/>
       </div>
     </div>
@@ -60,12 +61,26 @@ $border-raiuds: 4px;
     padding: 0 1em;
 
     &-title {
-      min-height: 32px;
+      min-height: 3em;
       display: flex;
       align-items: center;
       padding: 1em 0;
-      border-bottom: 1px solid $grey;
       cursor: pointer;
+      position: relative;
+    }
+
+    &-title::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate(0, -50%) rotate(45deg);
+      width: .6em;
+      height: .6em;
+      border: 1px solid transparent;
+      border-top-color: inherit;
+      border-right-color: inherit;
+      transition: all 250ms;
     }
 
     &-content {
@@ -73,25 +88,26 @@ $border-raiuds: 4px;
       height: 0;
       overflow: hidden;
       transition: all 250ms;
-
-      &.visible {
-        border-bottom: 1px solid $grey;
-        padding: 1em 0;
-        height: auto;
-      }
+      border-bottom: 1px solid $grey;
     }
 
     &:last-child {
-      .gulu-collapse-title {
+      .gulu-collapse-content {
         border-bottom: none;
+      }
+    }
+
+    &.visible {
+      .gulu-collapse-title {
+        &::after {
+          transform: translate(0, -50%) rotate(135deg);
+        }
       }
 
       .gulu-collapse-content {
-        border-bottom: none;
-
-        &.visible {
-          border-top: 1px solid $grey;
-        }
+        border-top: none;
+        padding: 1em 0;
+        height: auto;
       }
     }
   }
